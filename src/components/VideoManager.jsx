@@ -1,4 +1,6 @@
 import React from 'react';
+import VideoService from '../services/VideoService';
+import VideoSelector from './VideoSelector';
 import VideoPlayer from './VideoPlayer';
 
 function VideoManager() {
@@ -8,8 +10,13 @@ function VideoManager() {
     { id: 1, src: `${videosPath}video01.ogg`, type: "video/ogg" },
   ];
 
+  const videos = VideoService.getAllVideos();
+
   return (
-    <VideoPlayer currentVideo={currentVideo} />
+    <>
+        <VideoPlayer currentVideo={currentVideo} />
+        <VideoSelector videos={videos} />
+    </>
   );
 }
 
