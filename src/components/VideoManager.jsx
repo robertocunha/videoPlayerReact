@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import VideoService from '../services/VideoService';
 import VideoSelector from './VideoSelector';
 import VideoPlayer from './VideoPlayer';
@@ -6,9 +6,11 @@ import VideoPlayer from './VideoPlayer';
 function VideoManager() {
   const videosPath = "/src/assets/videos/";
   const videos = VideoService.getAllVideos();
+
+  const [index, setIndex] = useState(0);
   
   const currentVideo = [];
-  videos[0].formats.map((format) => 
+  videos[index].formats.map((format) => 
     currentVideo.push({
         id: format.formatId, 
         src: `${videosPath}${format.src}`, 
@@ -19,7 +21,7 @@ function VideoManager() {
   return (
     <>
         <VideoPlayer currentVideo={currentVideo} />
-        <VideoSelector videos={videos} />
+        <VideoSelector videos={videos} setIndex={setIndex} />
     </>
   );
 }
