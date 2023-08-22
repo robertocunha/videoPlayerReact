@@ -5,12 +5,16 @@ import VideoPlayer from './VideoPlayer';
 
 function VideoManager() {
   const videosPath = "/src/assets/videos/";
-  const currentVideo = [
-    { id: 0, src: `${videosPath}video01.mp4`, type: "video/mp4" },
-    { id: 1, src: `${videosPath}video01.ogg`, type: "video/ogg" },
-  ];
-
   const videos = VideoService.getAllVideos();
+  
+  const currentVideo = [];
+  videos[0].formats.map((format) => 
+    currentVideo.push({
+        id: format.formatId, 
+        src: `${videosPath}${format.src}`, 
+        type: format.type
+    })
+  );
 
   return (
     <>
