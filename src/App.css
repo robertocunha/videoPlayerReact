@@ -44,3 +44,9 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+video {
+  width: 500px;
+  margin: auto;
+  display: block;
+}
